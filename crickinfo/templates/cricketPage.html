@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body{
+	font-family: 'Roboto', sans-serif;
+    background-color:whitesmoke;
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+.navbar{
+    border: none;
+}
+i {
+	margin-right: 10px;
+}
+
+.navbar-logo{
+	padding: 15px;
+	color: whitesmoke;
+}
+.navbar-mainbg{
+	background-color:brown;
+	padding: 0px;
+}
+#navbarSupportedContent{
+	overflow: hidden;
+	position: relative;
+}
+#navbarSupportedContent ul{
+	padding: 0px;
+	margin: 0px;
+}
+#navbarSupportedContent ul li a i{
+	margin-right: 10px;
+}
+#navbarSupportedContent li {
+	list-style-type: none;
+	float: left;
+}
+#navbarSupportedContent ul li a{
+	color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 15px;
+    display: block;
+    padding: 20px 20px;
+    transition-duration:0.6s;
+	transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+}
+#navbarSupportedContent>ul>li.active>a{
+	color: brown;
+	background-color: transparent;
+	transition: all 0.7s;
+}
+#navbarSupportedContent a:not(:only-child):after {
+	content: "\f105";
+	position: absolute;
+	right: 20px;
+	top: 10px;
+	font-size: 14px;
+	font-family: "Font Awesome 5 Free";
+	display: inline-block;
+	padding-right: 3px;
+	vertical-align: middle;
+	font-weight: 900;
+	transition: 0.5s;
+}
+#navbarSupportedContent .active>a:not(:only-child):after {
+	transform: rotate(90deg);
+}
+.hori-selector{
+	display:inline-block;
+	position:absolute;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	transition-duration:0.6s;
+	transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	background-color: whitesmoke;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	margin-top: 10px;
+}
+.hori-selector .right,
+.hori-selector .left{
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	background-color: whitesmoke;
+	bottom: 10px;
+}
+.hori-selector .right{
+	right: -25px;
+}
+.hori-selector .left{
+	left: -25px;
+}
+.hori-selector .right:before,
+.hori-selector .left:before{
+	content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: brown;
+}
+.hori-selector .right:before{
+	bottom: 0;
+    right: -25px;
+}
+.hori-selector .left:before{
+	bottom: 0;
+    left: -25px;
+}
+
+
+
+
+@media (max-width: 991px){
+	#navbarSupportedContent ul li a{
+		padding: 12px 30px;
+	}
+	.hori-selector{
+		margin-top: 0px;
+		margin-left: 10px;
+		border-radius: 0;
+		border-top-left-radius: 25px;
+		border-bottom-left-radius: 25px;
+	}
+	.hori-selector .left,
+	.hori-selector .right{
+		right: 10px;
+	}
+	.hori-selector .left{
+		top: -25px;
+		left: auto;
+	}
+	.hori-selector .right{
+		bottom: -25px;
+	}
+	.hori-selector .left:before{
+		left: -25px;
+		top: -25px;
+	}
+	.hori-selector .right:before{
+		bottom: -25px;
+		left: -25px;
+	}
+}
+
+    .post-item{
+        text-align: center;
+        border: 1px solid gray;
+        border-radius: 10px;
+    }
+
+    .teamButton{
+       border: none;
+       width: 300px;
+       height: 150px;
+       border-radius: 5%;
+    }
+    .h5style{
+        background-color: aliceblue; 
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+    .heading{
+        font-weight: bold;
+        text-align: center;
+    }
+        
+
+    </style>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-mainbg">
+            <a class="navbar-brand navbar-logo" href="">
+                <img src="/static/images/crickinfo.png" style="width: 150px;height: 40px;border-radius: 1px;" alt="CrickInfo logo">
+            </a>
+            <a style="float: right;color: black; margin-right: 30px;margin-top: 10px;border: 1px solid black;box-shadow: black 2px 2px;" href="../rankings/"><h4>Rankings</h4></a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="float:right; margin-right: 500px;">
+                <ul class="navbar-nav ml-auto">
+                    <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+                    <li class="nav-item active">
+                        <a onclick="internationalButton()" style="color: black; font-weight: bold;">Internation Cricket Teams</a>
+                    </li>
+                    <li class="nav-item">
+                        <a onclick="iplButton()" style="color:black; font-weight: bold;">IPL</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <br><br>
+        <div id="internationalDiv" class="container">
+
+            <div class="row">
+            <div class="post-item col-sm-4">
+                      <a href="../9/" class="teamButton" id="9">
+                      <img data-qazy="true" data-default="https://s.ndtvimg.com/images/ndtvsports-default.jpg" src="https://s.ndtvimg.com/images/entities/120/england-5.png" alt="England Cricket Team" title="England Cricket Team">
+                        England Cricket Team
+                      </a>
+             </div>
+
+             <div class="post-item col-sm-4">
+                      <a href="../2/" class="teamButton" id="2">
+                      <img data-qazy="true" data-default="https://s.ndtvimg.com/images/ndtvsports-default.jpg" src="https://s.ndtvimg.com/images/entities/120/india-6.png" alt="India Cricket Team" title="India Cricket Team">
+                        India Cricket Team
+                      </a>
+             </div>
+
+             <div class="post-item col-sm-4">
+                      <a href="../4/" class="teamButton" id="4">
+                      <img data-qazy="true" data-default="https://s.ndtvimg.com/images/ndtvsports-default.jpg" src="https://s.ndtvimg.com/images/entities/120/australia-7.png" alt="Australia Cricket Team" title="Australia Cricket Team">
+                        Australia Cricket Team
+                      </a>
+             </div>
+             </div>
+
+             <br><br>
+
+             <div class="row">
+             <div class="post-item col-sm-4">
+                      <a href="../6/" class="teamButton" id="6">
+                      <img data-qazy="true" data-default="https://s.ndtvimg.com/images/ndtvsports-default.jpg" src="https://s.ndtvimg.com/images/entities/120/bangladesh-2114.png" alt="Bangladesh Cricket Team" title="Bangladesh Cricket Team">
+                        Bangladesh Cricket Team
+                      </a>
+             </div>
+
+             <div class="post-item col-sm-4">
+                      <a href="../13/" class="teamButton" id="13">
+                      <img data-qazy="true" data-default="https://s.ndtvimg.com/images/ndtvsports-default.jpg" src="https://s.ndtvimg.com/images/entities/120/new-zealand-2115.png" alt="New Zealand Cricket Team" title="New Zealand Cricket Team">
+                        New Zealand Cricket Team
+                      </a>
+             </div>
+
+             <div class="post-item col-sm-4">
+                      <a href="../3/" class="teamButton" id="3">
+                      <img data-qazy="true" data-default="https://s.ndtvimg.com/images/ndtvsports-default.jpg" src="https://s.ndtvimg.com/images/entities/120/pakistan-2116.png" alt="Pakistan Cricket Team" title="Pakistan Cricket Team">
+                        Pakistan Cricket Team
+                      </a>
+             </div>
+             </div>
+
+             <br><br>
+
+             <div class="row">
+                <div class="post-item col-sm-4">
+                          <a href="../11/" class="teamButton" id="11">
+                          <img data-qazy="true" data-default="https://s.ndtvimg.com/images/ndtvsports-default.jpg" src="https://s.ndtvimg.com/images/entities/120/south-africa-2117.png" alt="South Africa Cricket Team" title="South Africa Cricket Team">
+                              South Africa Cricket Team
+                          </a>
+                 </div>
+
+                 <div class="post-item col-sm-4">
+                          <a href="../5/" class="teamButton" id="5">
+                          <img data-qazy="true" data-default="https://s.ndtvimg.com/images/ndtvsports-default.jpg" src="https://s.ndtvimg.com/images/entities/120/sri-lanka-2118.png" alt="Sri Lanka Cricket Team" title="Sri Lanka Cricket Team">
+                              Sri Lanka Cricket Team
+                          </a>
+                 </div>
+
+                 <div class="post-item col-sm-4">
+                          <a href="../5/" class="teamButton" id="5">
+                          <img data-qazy="true" data-default="https://s.ndtvimg.com/images/ndtvsports-default.jpg" src="https://s.ndtvimg.com/images/entities/120/west-indies-2119.png" alt="West Indies Cricket Team" title="West Indies Cricket Team">
+                              West Indies Cricket Team
+                          </a>
+                 </div>
+             </div>
+
+             <br><br>
+
+             <div class="row">
+                <div class="post-item col-sm-4">
+                          <a href="../12/" class="teamButton" id="12">
+                          <img data-qazy="true" data-default="https://s.ndtvimg.com/images/ndtvsports-default.jpg" src="https://s.ndtvimg.com/images/entities/120/zimbabwe-2120.png" alt="Zimbabwe Cricket Team" title="Zimbabwe Cricket Team">
+                              Zimbabwe Cricket Team
+                          </a>
+                 </div>
+
+                 <div class="post-item col-sm-4">
+                          <a href="../27/" class="teamButton" id="27">
+                          <img data-qazy="true" data-default="https://s.ndtvimg.com/images/ndtvsports-default.jpg" src="https://s.ndtvimg.com/images/entities/120/ireland_636523096390731419.png" alt="Ireland Cricket Team" title="Ireland Cricket Team">
+                              Ireland Cricket Team
+                          </a>
+                 </div>
+
+                 <div class="post-item col-sm-4">
+                          <a href="../96/" class="teamButton" id="96">
+                          <img data-qazy="true" data-default="https://s.ndtvimg.com/images/ndtvsports-default.jpg" src="https://s.ndtvimg.com/images/entities/120/afghanistan-2156.png" alt="Afghanistan" title="Afghanistan">
+                              Afghanistan Cricket Team
+                          </a>
+                 </div>
+             </div>
+             <br><br><br><br> 
+        </div>
+
+
+        <div class="container" id="iplDiv" style="background-color:antiquewhite; display: none;">
+            <div class="row" style="border: 1px solid black;border-radius: 20px;padding-bottom: 17px;box-shadow: 2px 3px #888888;">
+                <br>
+                <div class="col-sm-2">   
+                    <img src="/static/images/ipl.jpg" style="width: 100px;height: 70px;border-radius: 10%;">
+                </div>
+                <div class="col-sm-10">
+                    <h3 id="teamTitle">Indian Premier League 2020</h3>
+                </div> 
+            </div>
+            <br><br>
+            <div class="row" style="border-bottom: 1px solid gray;">
+                <div class="col-sm-4"><p class="heading">Match</p></div>
+                <div class="col-sm-4"><p class="heading">Venue</p></div>
+                <div class="col-sm-4"><p class="heading">Date & Time</p></div>
+            </div>
+            <div class="row">
+                <hr>
+                <div class="col-sm-4" id="matchTitleDiv">
+                    {% for title in matchTitleList %}
+                    <div style="height: 50px;border-bottom: 1px solid gray;">
+                    <h5 class="h5style" style="background-color: aliceblue; padding-top: 10px;padding-bottom: 10px;text-align: center;">{{title}}</h5>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                </div>
+
+                <div class="col-sm-4" id="matchVenueDiv">
+                    {% for venue in matchVenueList %}
+                    <div style="height: 50px;border-bottom: 1px solid gray;">
+                    <h5 class="h5style">{{venue}}</h5>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                </div>
+
+                <div class="col-sm-4" id="matchDateDiv">
+                    {% for date in matchDateList %}
+                    <div style="height: 50px;border-bottom: 1px solid gray;">
+                    <h5 class="h5style">{{date}}</h5>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                </div>
+                <br><br>
+            </div>
+            <br>
+        </div>
+    </body>
+
+
+    <script>
+        function test(){
+  var tabsNewAnim = $('#navbarSupportedContent');
+  var selectorNewAnim = $('#navbarSupportedContent').find('li').length;
+  var activeItemNewAnim = tabsNewAnim.find('.active');
+  var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
+  var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
+  var itemPosNewAnimTop = activeItemNewAnim.position();
+  var itemPosNewAnimLeft = activeItemNewAnim.position();
+  $(".hori-selector").css({
+    "top":itemPosNewAnimTop.top + "px", 
+    "left":itemPosNewAnimLeft.left + "px",
+    "height": activeWidthNewAnimHeight + "px",
+    "width": activeWidthNewAnimWidth + "px"
+  });
+  $("#navbarSupportedContent").on("click","li",function(e){
+    $('#navbarSupportedContent ul li').removeClass("active");
+    $(this).addClass('active');
+    var activeWidthNewAnimHeight = $(this).innerHeight();
+    var activeWidthNewAnimWidth = $(this).innerWidth();
+    var itemPosNewAnimTop = $(this).position();
+    var itemPosNewAnimLeft = $(this).position();
+    $(".hori-selector").css({
+      "top":itemPosNewAnimTop.top + "px", 
+      "left":itemPosNewAnimLeft.left + "px",
+      "height": activeWidthNewAnimHeight + "px",
+      "width": activeWidthNewAnimWidth + "px"
+    });
+  });
+}
+$(document).ready(function(){
+  setTimeout(function(){ test(); });
+});
+$(window).on('resize', function(){
+  setTimeout(function(){ test(); }, 500);
+});
+$(".navbar-toggler").click(function(){
+  setTimeout(function(){ test(); });
+});
+
+function iplButton(){
+    console.log("ipl button")
+    $("#iplDiv").show()
+    $("#internationalDiv").hide()
+}
+function internationalButton(){
+    console.log("international button")
+    $("#iplDiv").hide()
+    $("#internationalDiv").show()
+}
+
+
+    </script>
+</html>
